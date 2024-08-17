@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Tableau</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form id="formulaire">
+        <label for="article">ARTICLE:</label>
+        <select id="article" name="article">
+            <option value="CARRELAGE MUR">CARRELAGE MUR</option>
+            <option value="CARRELAGE SOL">CARRELAGE SOL</option>
+            <option value="CARRELAGE DECOR">CARRELAGE DECOR</option>
+            <option value="BIDET">BIDET</option>
+            <option value="ROBINET ET BIDET">ROBINET ET BIDET</option>
+            <option value="ROBINET">ROBINET</option>
+            <option value="MEUBLE / PLAN VASQUE">MEUBLE / PLAN VASQUE</option>
+            <option value="VASQUE">VASQUE</option>
+            <option value="MEROIRE">MIROIRE</option>
+            <option value="BOX DE DOUCHE">BOX DE DOUCHE</option>
+            <option value="CUVETTE">CUVETTE</option>
+            <option value="COLONNE DE DOUCHE">COLONNE DE DOUCHE</option>
+            <option value="RECEVEUR">RECEVEUR</option>
+        </select>
+        
+        <label for="code">CODE:</label>
+        <select id="code" name="code">
+            <!-- Options will be filled by JavaScript -->
+        </select>
+        <input type="text" id="nouveauCode" placeholder="Ajouter un nouveau code">
+
+        <label for="prix">PRIX:</label>
+        <input type="number" id="prix" name="prix">
+        <select id="unite" name="unite">
+            <option value="DHS">DHS</option>
+            <option value="DHS/m²">DHS/m²</option>
+        </select>
+
+        <button type="button" onclick="ajouterLigne()">Ajouter</button>
+    </form>
+
+    <table id="tableau">
+        <thead>
+            <tr>
+                <th>ARTICLE</th>
+                <th>CODE</th>
+                <th>PRIX</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- New rows will be added here -->
+        </tbody>
+    </table>
+
+    <button onclick="imprimerTableau()">Imprimer</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
