@@ -82,6 +82,12 @@ function supprimerLigne(row) {
     sessionStorage.setItem('tableData', document.querySelector('#tableau tbody').innerHTML);
 }
 
+function supprimerTousLesArticles() {
+    const tableBody = document.getElementById('tableau').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Vide le contenu du tableau
+    sessionStorage.removeItem('tableData'); // Supprime les données du sessionStorage
+}
+
 function imprimerTableau() {
     window.print();
 }

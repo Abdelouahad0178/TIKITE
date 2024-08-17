@@ -113,3 +113,13 @@ th {
         display: none;
     }
 }
+
+#supprimerTout {
+    background-color: red;
+    color: white;
+    margin-top: 20px;
+}
+
+#supprimerTout:hover {
+    background-color: darkred;
+}
