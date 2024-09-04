@@ -97,9 +97,24 @@ th {
 
     #tableau {
         position: absolute;
-        left: 10%;
+        left: 0;
         top: 0;
-        width: 75%;
+        width: 100%;
+        max-height: 35vh; /* 35% de la hauteur de la vue */
+        overflow: hidden;
+        page-break-inside: avoid;
+    }
+
+    #tableau thead {
+        display: table-header-group;
+    }
+
+    #tableau tbody {
+        display: table-row-group;
+    }
+
+    #tableau tr {
+        page-break-inside: avoid;
     }
 
     td:nth-child(1), td:nth-child(3) {
@@ -112,6 +127,21 @@ th {
 
     form, button {
         display: none;
+    }
+
+    /* Ajuster la taille de la police pour l'impression */
+    body, #tableau {
+        font-size: 8pt;
+    }
+
+    /* S'assurer que la table prend toute la largeur */
+    table {
+        width: 100%;
+    }
+
+    /* Compresser le padding des cellules */
+    th, td {
+        padding: 2px;
     }
 }
 
