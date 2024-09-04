@@ -4,6 +4,7 @@ body {
     margin: 20px;
     padding: 0;
     box-sizing: border-box;
+    font-size: 13px;
 }
 
 form, button {
