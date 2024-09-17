@@ -4,17 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#tableau tbody').innerHTML = sessionStorage.getItem('tableData');
     }
 
-    fetch('merged.json')
-        .then(response => response.json())
-        .then(data => {
-            const codeSelect = document.getElementById('code');
-            data.codes.forEach(code => {
-                const option = document.createElement('option');
-                option.value = code;
-                option.textContent = code;
-                codeSelect.appendChild(option);
-            });
-        });
+    document.getElementById('formulaire').addEventListener('reset', function(event) {
+        reinitialiserFormulaire();
+    });
+
+    document.getElementById('boutonAction').addEventListener('click', function() {
+        if (this.textContent === 'Ajouter') {
+            ajouterLigne();
+        } else {
+            mettreAJourLigne();
+        }
+    });
 });
 
 function ajouterLigne() {
@@ -63,18 +63,46 @@ function ajouterLigne() {
     cell4.setAttribute('data-label', 'Actions');
 
     sessionStorage.setItem('tableData', document.querySelector('#tableau tbody').innerHTML);
+
+    reinitialiserFormulaire();
 }
 
 function modifierLigne(row) {
     const article = row.cells[0].textContent;
     const code = row.cells[1].textContent;
-    const prix = row.cells[2].textContent.split(" ")[0];
+    const prixComplet = row.cells[2].textContent;
+    const [prix, unite] = prixComplet.split(" ");
 
     document.getElementById('article').value = article;
     document.getElementById('code').value = code;
     document.getElementById('prix').value = prix;
+    document.getElementById('unite').value = unite;
 
-    supprimerLigne(row);
+    sessionStorage.setItem('ligneEnEdition', row.rowIndex);
+
+    const boutonAction = document.getElementById('boutonAction');
+    boutonAction.textContent = 'Mettre à jour';
+}
+
+function mettreAJourLigne() {
+    const indexLigne = sessionStorage.getItem('ligneEnEdition');
+    if (indexLigne) {
+        const table = document.getElementById('tableau');
+        const row = table.rows[indexLigne];
+
+        const article = document.getElementById('article').value;
+        const code = document.getElementById('code').value;
+        const prix = document.getElementById('prix').value;
+        const unite = document.getElementById('unite').value;
+
+        row.cells[0].textContent = article;
+        row.cells[1].textContent = code;
+        row.cells[2].textContent = prix + " " + unite;
+
+        sessionStorage.setItem('tableData', document.querySelector('#tableau tbody').innerHTML);
+    }
+
+    reinitialiserFormulaire();
 }
 
 function supprimerLigne(row) {
@@ -84,10 +112,17 @@ function supprimerLigne(row) {
 
 function supprimerTousLesArticles() {
     const tableBody = document.getElementById('tableau').getElementsByTagName('tbody')[0];
-    tableBody.innerHTML = ''; // Vide le contenu du tableau
-    sessionStorage.removeItem('tableData'); // Supprime les données du sessionStorage
+    tableBody.innerHTML = '';
+    sessionStorage.removeItem('tableData');
 }
 
 function imprimerTableau() {
     window.print();
+}
+
+function reinitialiserFormulaire() {
+    document.getElementById('formulaire').reset();
+    const boutonAction = document.getElementById('boutonAction');
+    boutonAction.textContent = 'Ajouter';
+    sessionStorage.removeItem('ligneEnEdition');
 }

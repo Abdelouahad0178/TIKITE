@@ -17,33 +17,30 @@
             <option value="BIDET">BIDET</option>
             <option value="ROBINET ET BIDET">ROBINET BIDET</option>
             <option value="ROBINET">ROBINET</option>
-            <option value="MEUBLE ">MEUBLE</option>
+            <option value="MEUBLE">MEUBLE</option>
             <option value="MEUBLE / PLAN VASQUE">MEUBLE / PLAN VASQUE</option>
-            
             <option value="VASQUE">VASQUE</option>
-            <option value="PLAN VASQUE"> PLAN VASQUE</option>
+            <option value="PLAN VASQUE">PLAN VASQUE</option>
             <option value="MIROIRE">MIROIRE</option>
             <option value="BOX DE DOUCHE">BOX DE DOUCHE</option>
             <option value="CUVETTE">CUVETTE</option>
-
             <option value="COLONNE DE DOUCHE">COLONNE DE DOUCHE</option>
             <option value="RECEVEUR">RECEVEUR</option>
         </select>
         
         <label for="code">CODE:</label>
-        <select id="code" name="code">
-            <!-- Options will be filled by JavaScript -->
-        </select>
+        <select id="code" name="code"></select>
         <input type="text" id="nouveauCode" placeholder="Ajouter un nouveau code">
-
+        
         <label for="prix">PRIX:</label>
         <input type="number" id="prix" name="prix">
+        
         <select id="unite" name="unite">
             <option value="DHS">DHS</option>
             <option value="DHS/m²">DHS/m²</option>
         </select>
-
-        <button type="button" onclick="ajouterLigne()">Ajouter</button>
+        
+        <button type="button" id="boutonAction">Ajouter</button>
     </form>
 
     <table id="tableau">
@@ -56,7 +53,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- New rows will be added here -->
+            <!-- Les nouvelles lignes seront ajoutées ici -->
         </tbody>
     </table>
 
